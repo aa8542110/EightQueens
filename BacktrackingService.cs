@@ -7,15 +7,14 @@ public interface ISolver
     List<int[]> GetResults();
 }
 
-public class BacktrackingService : ISolver
+public class BacktrackingService(int i) : ISolver
 {
     private List<int[]> _solutions = new();
-    private int[] _queens = new int[8];
-    
+    private int[] _queens = new int[i];
+
     public List<int[]> GetResults()
     {
         _solutions = new List<int[]>();
-        _queens = new int[8];
         Backtrack(0);
         return _solutions;
     }
@@ -47,9 +46,14 @@ public class BacktrackingService : ISolver
             if (_queens[i] == col)
                 return false;
             
-            if (Math.Abs(_queens[i] - col) == Math.Abs(i - row))
+            if (IsDiagonal(row, col, i))
                 return false;
         }
         return true;
+    }
+
+    private bool IsDiagonal(int row, int col, int i)
+    {
+        return Math.Abs(_queens[i] - col) == Math.Abs(i - row);
     }
 }

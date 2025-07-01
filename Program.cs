@@ -4,18 +4,16 @@ class Program
 {
     static void Main()
     {
-        var backtrackingService = new BacktrackingService();
+        var backtrackingService = new BacktrackingService(8);
         var results = backtrackingService.GetResults();
         PrintResults(results);
-        
-        Console.WriteLine("\n");
     }
     
     static void PrintResults(List<int[]> solutions)
     {
         for (int i = 0; i < solutions.Count; i++)
         {
-            Console.WriteLine($"//Solution {i + 1}:");
+            Console.WriteLine($"// Solution {i + 1}:");
             PrintBoard(solutions[i]);
             Console.WriteLine();
         }
